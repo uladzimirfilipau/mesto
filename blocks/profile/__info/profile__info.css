@@ -1,0 +1,11 @@
+.profile__info {
+  border: 1px solid red;
+  padding: 26px 0 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .profile__info {
+    padding: 0;
+    margin: 22px 0 25px 30px;
+  }
+}
