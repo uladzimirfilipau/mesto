@@ -1,0 +1,7 @@
+.elements__item-title {
+  /* border: 1px solid green; */
+  margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

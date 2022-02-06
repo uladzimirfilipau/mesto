@@ -1,0 +1,7 @@
+.elements__item {
+  /* border: 1px solid red; */
+  max-width: 282px;
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+}
