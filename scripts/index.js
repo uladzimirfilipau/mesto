@@ -1,5 +1,5 @@
 let popupElement = document.querySelector('.popup');
-let popupOpenButtonElement = document.querySelector('.popup_opened');
+let popupOpenButtonElement = document.querySelector('.profile__button-edit');
 let popupCloseButtonElement = popupElement.querySelector('.popup__button-close');
 
 let openPopup = function() {
