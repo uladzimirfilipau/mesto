@@ -1,5 +1,13 @@
 .elements__item-like {
+  min-width: 22px;
+  border: none;
+  background-image: url(../../../images/heart.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: auto;
   transition: opacity 0.3s linear;
+  padding: 0;
 }
 
 .elements__item-like:hover {

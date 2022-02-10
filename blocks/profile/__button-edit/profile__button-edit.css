@@ -2,18 +2,25 @@
   width: 18px;
   height: 18px;
   border: 1px solid #fff;
-  box-sizing: border-box;
-  background-color: transparent;
   background-image: url(../../../images/button-edit.svg);
+  background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
-  margin-left: 10px;
+  background-size: 50%;
+  margin: 0 0 0 10px;
+  padding: 0;
+  transition: opacity 0.3s linear;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
   .profile__button-edit {
     width: 24px;
     height: 24px;
-    margin-left: 18px;
+    margin: 0 0 0 18px;
   }
+}
+
+.profile__button-edit:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }
