@@ -34,7 +34,11 @@
 @import url(../blocks/popup/__content/popup__content.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__input/__input.css);
-@import url(../blocks/popup/__input/_type_name/_type_name.css);
-@import url(../blocks/popup/__input/_type_job/_type_job.css);
+@import url(../blocks/popup/__input/_type_name/popup__input_type_name.css);
+@import url(../blocks/popup/__input/_type_job/popup__input_type_job.css);
+
+@import url(../blocks/popup/__input/_type_title/popup__input_type_title.css);
+@import url(../blocks/popup/__input/_type_link/popup__input_type_link.css);
+
 @import url(../blocks/popup/__button-save/popup__button-save.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
