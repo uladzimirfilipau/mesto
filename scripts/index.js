@@ -1,3 +1,42 @@
+const initialCards = [
+  {
+    name: "Архыз",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+  },
+  {
+    name: "Челябинская область",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+  },
+  {
+    name: "Иваново",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+  },
+  {
+    name: "Камчатка",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+  },
+  {
+    name: "Холмогорский район",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+  },
+  {
+    name: "Байкал",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+  },
+];
+
+const templateElement = document.querySelector('.elements__template').content;
+const listElement = document.querySelector('.elements__list');
+
+initialCards.forEach(function (item) {
+  const itemElement = templateElement.querySelector('.elements__item').cloneNode(true)
+  itemElement.querySelector('.elements__item-image').src = item.link;
+  itemElement.querySelector('.elements__item-image').alt = item.name;
+  itemElement.querySelector('.elements__item-title').textContent = item.name;
+  listElement.append(itemElement);
+})
+
+
 // Находим попап редактирования имени и профессии
 const popupEditElement = document.querySelector(".popup_edit");
 const popupOpenButtonElement = document.querySelector(".profile__button-edit");
@@ -58,17 +97,12 @@ function handleProfileFormSubmit(evt) {
   closePopup();
 }
 
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
 function handleProfileFormAddCard(evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  // Так мы можем определить свою логику отправки.
-  // О том, как это делать, расскажем позже.
+  evt.preventDefault();
+
 
   closeAddCardPopup();
 }
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
 formElement.addEventListener("submit", handleProfileFormSubmit);
 formAddElement.addEventListener("submit", handleProfileFormAddCard);
