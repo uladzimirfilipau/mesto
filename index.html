@@ -36,84 +36,22 @@
       <!-- ELEMENTS -->
       <section class="elements">
         <ul class="elements__list">
-          <li class="elements__item">
-            <figure class="elements__figure">
-              <img
-                src="./images/kirill-pershin-1088404-unsplash.jpg"
-                alt="Карачаевск"
-                class="elements__item-image"
-              />
-              <figcaption class="elements__figure-caption">
-                <h2 class="elements__item-title">Карачаевск</h2>
-                <button class="elements__item-like"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="elements__item">
-            <figure class="elements__figure">
-              <img
-                src="./images/kirill-pershin-1404681-unsplash.jpg"
-                alt="Гора Эльбрус"
-                class="elements__item-image"
-              />
-              <figcaption class="elements__figure-caption">
-                <h2 class="elements__item-title">Гора Эльбрус</h2>
-                <button class="elements__item-like"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="elements__item">
-            <figure class="elements__figure">
-              <img
-                src="./images/kirill-pershin-1556355-unsplash.jpg"
-                alt="Домбай"
-                class="elements__item-image"
-              />
-              <figcaption class="elements__figure-caption">
-                <h2 class="elements__item-title">Домбай</h2>
-                <button class="elements__item-like"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="elements__item">
-            <figure class="elements__figure">
-              <img
-                src="./images/kirill-pershin-1404681-unsplash.jpg"
-                alt="Гора Эльбрус"
-                class="elements__item-image"
-              />
-              <figcaption class="elements__figure-caption">
-                <h2 class="elements__item-title">Гора Эльбрус</h2>
-                <button class="elements__item-like"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="elements__item">
-            <figure class="elements__figure">
-              <img
-                src="./images/kirill-pershin-1556355-unsplash.jpg"
-                alt="Домбай"
-                class="elements__item-image"
-              />
-              <figcaption class="elements__figure-caption">
-                <h2 class="elements__item-title">Домбай</h2>
-                <button class="elements__item-like"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="elements__item">
-            <figure class="elements__figure">
-              <img
-                src="./images/kirill-pershin-1088404-unsplash.jpg"
-                alt="Карачаево-Черкессия"
-                class="elements__item-image"
-              />
-              <figcaption class="elements__figure-caption">
-                <h2 class="elements__item-title">Карачаево-Черкессия</h2>
-                <button class="elements__item-like"></button>
-              </figcaption>
-            </figure>
-          </li>
+          <template class="elements__template">
+            <li class="elements__item">
+              <figure class="elements__figure">
+                <img
+                  src="./images/Trash.svg"
+                  alt="Удалить карточку"
+                  class="elements__trash"
+                />
+                <img src="" alt="" class="elements__item-image" />
+                <figcaption class="elements__figure-caption">
+                  <h2 class="elements__item-title"></h2>
+                  <button class="elements__item-like"></button>
+                </figcaption>
+              </figure>
+            </li>
+          </template>
         </ul>
       </section>
     </main>
