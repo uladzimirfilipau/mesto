@@ -36,6 +36,46 @@ initialCards.forEach(function (item) {
   listElement.append(itemElement);
 })
 
+// Находим попап добавления карточки
+const popupAddCardElement = document.querySelector(".popup_add");
+const popupAddCardButtonElement = document.querySelector(".profile__button-add");
+const popupCloseAddCardButtonElement = popupAddCardElement.querySelector(".popup__button-close");
+// Находим форму добавления карточки в DOM
+const formAddElement = popupAddCardElement.querySelector(".popup__form_card");
+
+const openAddCardPopup = function () {
+  popupAddCardElement.classList.add("popup_opened");
+};
+
+const closeAddCardPopup = function () {
+  popupAddCardElement.classList.remove("popup_opened");
+};
+
+popupAddCardButtonElement.addEventListener("click", openAddCardPopup);
+popupCloseAddCardButtonElement.addEventListener("click", closeAddCardPopup);
+
+function renderInitialCard(imageValue, titleValue) {
+  const itemElement = templateElement.querySelector('.elements__item').cloneNode(true);
+  itemElement.querySelector('.elements__item-image').src = imageValue;
+  itemElement.querySelector('.elements__item-title').textContent = titleValue;
+  listElement.prepend(itemElement);
+}
+
+function handleFormAddCard(evt) {
+  evt.preventDefault();
+
+  const imageElement = document.querySelector('.popup__input_type_link');
+  const titleElement = document.querySelector('.popup__input_type_title');
+
+  renderInitialCard(imageElement.value, titleElement.value)
+
+  imageElement.value = '';
+  titleElement.value = '';
+
+  closeAddCardPopup();
+}
+
+formAddElement.addEventListener("submit", handleFormAddCard);
 
 // Находим попап редактирования имени и профессии
 const popupEditElement = document.querySelector(".popup_edit");
@@ -59,26 +99,9 @@ const closePopup = function () {
   popupEditElement.classList.remove("popup_opened");
 };
 
-// Находим попап добавления карточки
-const popupAddCardElement = document.querySelector(".popup_add");
-const popupAddCardButtonElement = document.querySelector(".profile__button-add");
-const popupCloseAddCardButtonElement = popupAddCardElement.querySelector(".popup__button-close");
-// Находим форму добавления карточки в DOM
-const formAddElement = popupAddCardElement.querySelector(".popup__form_card");
-
-const openAddCardPopup = function () {
-  popupAddCardElement.classList.add("popup_opened");
-};
-
-const closeAddCardPopup = function () {
-  popupAddCardElement.classList.remove("popup_opened");
-};
-
 // Регистрируем обработчики событий по клику
 popupOpenButtonElement.addEventListener("click", openPopup);
 popupCloseButtonElement.addEventListener("click", closePopup);
-popupAddCardButtonElement.addEventListener("click", openAddCardPopup);
-popupCloseAddCardButtonElement.addEventListener("click", closeAddCardPopup);
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
@@ -97,12 +120,4 @@ function handleProfileFormSubmit(evt) {
   closePopup();
 }
 
-function handleProfileFormAddCard(evt) {
-  evt.preventDefault();
-
-
-  closeAddCardPopup();
-}
-
 formElement.addEventListener("submit", handleProfileFormSubmit);
-formAddElement.addEventListener("submit", handleProfileFormAddCard);
