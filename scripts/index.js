@@ -33,6 +33,7 @@ initialCards.forEach(function (item) {
   itemElement.querySelector('.elements__item-image').src = item.link;
   itemElement.querySelector('.elements__item-image').alt = item.name;
   itemElement.querySelector('.elements__item-title').textContent = item.name;
+  setEvtListener(itemElement);
   listElement.append(itemElement);
 })
 
@@ -58,6 +59,7 @@ function renderInitialCard(imageValue, titleValue) {
   const itemElement = templateElement.querySelector('.elements__item').cloneNode(true);
   itemElement.querySelector('.elements__item-image').src = imageValue;
   itemElement.querySelector('.elements__item-title').textContent = titleValue;
+  setEvtListener(itemElement);
   listElement.prepend(itemElement);
 }
 
@@ -76,6 +78,16 @@ function handleFormAddCard(evt) {
 }
 
 formAddElement.addEventListener("submit", handleFormAddCard);
+
+function setEvtListener(itemElement) {
+  const deleteElement = itemElement.querySelector('.elements__trash');
+  deleteElement.addEventListener('click', handleDelete);
+}
+
+function handleDelete(evt) {
+  const itemElement = evt.target.closest('.elements__item');
+  itemElement.remove();
+}
 
 // Находим попап редактирования имени и профессии
 const popupEditElement = document.querySelector(".popup_edit");
