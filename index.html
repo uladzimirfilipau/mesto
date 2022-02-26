@@ -34,86 +34,24 @@
         <button aria-label="Добавить" class="profile__button-add"></button>
       </section>
       <!-- ELEMENTS -->
-      <section class="elements">
+      <section class="elements" aria-label="Карточка">
         <ul class="elements__list">
-          <li class="elements__item">
-            <figure class="elements__figure">
-              <img
-                src="./images/kirill-pershin-1088404-unsplash.jpg"
-                alt="Карачаевск"
-                class="elements__item-image"
-              />
-              <figcaption class="elements__figure-caption">
-                <h2 class="elements__item-title">Карачаевск</h2>
-                <button class="elements__item-like"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="elements__item">
-            <figure class="elements__figure">
-              <img
-                src="./images/kirill-pershin-1404681-unsplash.jpg"
-                alt="Гора Эльбрус"
-                class="elements__item-image"
-              />
-              <figcaption class="elements__figure-caption">
-                <h2 class="elements__item-title">Гора Эльбрус</h2>
-                <button class="elements__item-like"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="elements__item">
-            <figure class="elements__figure">
-              <img
-                src="./images/kirill-pershin-1556355-unsplash.jpg"
-                alt="Домбай"
-                class="elements__item-image"
-              />
-              <figcaption class="elements__figure-caption">
-                <h2 class="elements__item-title">Домбай</h2>
-                <button class="elements__item-like"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="elements__item">
-            <figure class="elements__figure">
-              <img
-                src="./images/kirill-pershin-1404681-unsplash.jpg"
-                alt="Гора Эльбрус"
-                class="elements__item-image"
-              />
-              <figcaption class="elements__figure-caption">
-                <h2 class="elements__item-title">Гора Эльбрус</h2>
-                <button class="elements__item-like"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="elements__item">
-            <figure class="elements__figure">
-              <img
-                src="./images/kirill-pershin-1556355-unsplash.jpg"
-                alt="Домбай"
-                class="elements__item-image"
-              />
-              <figcaption class="elements__figure-caption">
-                <h2 class="elements__item-title">Домбай</h2>
-                <button class="elements__item-like"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="elements__item">
-            <figure class="elements__figure">
-              <img
-                src="./images/kirill-pershin-1088404-unsplash.jpg"
-                alt="Карачаево-Черкессия"
-                class="elements__item-image"
-              />
-              <figcaption class="elements__figure-caption">
-                <h2 class="elements__item-title">Карачаево-Черкессия</h2>
-                <button class="elements__item-like"></button>
-              </figcaption>
-            </figure>
-          </li>
+          <template class="elements__template">
+            <li class="elements__item">
+              <figure class="elements__figure">
+                <img
+                  src="./images/Trash.svg"
+                  alt="Удалить карточку"
+                  class="elements__trash"
+                />
+                <img src="" alt="" class="elements__item-image" />
+                <figcaption class="elements__figure-caption">
+                  <h2 class="elements__item-title"></h2>
+                  <button class="elements__item-like"></button>
+                </figcaption>
+              </figure>
+            </li>
+          </template>
         </ul>
       </section>
     </main>
@@ -176,6 +114,22 @@
           </button>
         </div>
       </form>
+    </section>
+    <!-- POPUP-IMAGE -->
+    <section class="popup popup_image" aria-label="Просмотр фотографии">
+      <figure class="popup__figure">
+        <button
+          type="button"
+          aria-label="Закрыть"
+          class="popup__close-image"
+        ></button>
+        <img
+          src="#"
+          alt="#"
+          class="popup__image"
+        />
+        <figcaption class="popup__figure-caption"></figcaption>
+      </figure>
     </section>
     <script src="./scripts/index.js"></script>
   </body>
