@@ -35,9 +35,8 @@ initialCards.forEach(function (item) {
   itemElement.querySelector(".elements__item-image").src = item.link;
   itemElement.querySelector(".elements__item-image").alt = item.name;
   itemElement.querySelector(".elements__item-title").textContent = item.name;
-  setEvtLikeListener(itemElement);
-  setEvtDeleteListener(itemElement);
   listElement.append(itemElement);
+  setEvtListener(itemElement);
 });
 
 // Находим попап добавления карточки
@@ -68,9 +67,9 @@ function renderInitialCard(imageValue, titleValue) {
     .cloneNode(true);
   itemElement.querySelector(".elements__item-image").src = imageValue;
   itemElement.querySelector(".elements__item-title").textContent = titleValue;
-  setEvtLikeListener(itemElement);
-  setEvtDeleteListener(itemElement);
+  itemElement.querySelector(".elements__item-image").alt = titleValue;
   listElement.prepend(itemElement);
+  setEvtListener(itemElement);
 }
 
 function handleFormAddCard(evt) {
@@ -89,26 +88,44 @@ function handleFormAddCard(evt) {
 
 formAddElement.addEventListener("submit", handleFormAddCard);
 
-function setEvtLikeListener(itemElement) {
+function setEvtListener(itemElement) {
   const likeElement = itemElement.querySelector(".elements__item-like");
   likeElement.addEventListener("click", handleLike);
+
+  const deleteElement = itemElement.querySelector(".elements__trash");
+  deleteElement.addEventListener("click", handleDelete);
+
+  const openImageElement = itemElement.querySelector(".elements__item-image");
+  openImageElement.addEventListener("click", openImagePopup);
 }
 
 function handleLike(evt) {
   const eventTarget = evt.target;
-  console.log(eventTarget);
   eventTarget.classList.toggle('elements__item-like_active');
-}
-
-function setEvtDeleteListener(itemElement) {
-  const deleteElement = itemElement.querySelector(".elements__trash");
-  deleteElement.addEventListener("click", handleDelete);
 }
 
 function handleDelete(evt) {
   const itemElement = evt.target.closest(".elements__item");
   itemElement.remove();
 }
+
+const popupImage = document.querySelector(".popup_image");
+const popupImageElement = popupImage.querySelector(".popup__image");
+const captionText = popupImage.querySelector(".popup__figure-caption");
+const popupCloseImageElement = popupImage.querySelector(".popup__close-image");
+
+function openImagePopup(evt) {
+  popupImage.classList.add('popup_opened');
+  const itemElement = evt.target.closest(".elements__item-image");
+  popupImageElement.src = itemElement.src;
+  captionText.textContent = itemElement.alt;
+}
+
+const closeImagePopup = function () {
+  popupImage.classList.remove("popup_opened");
+};
+
+  popupCloseImageElement.addEventListener("click", closeImagePopup);
 
 // Находим попап редактирования имени и профессии
 const popupEditElement = document.querySelector(".popup_edit");
