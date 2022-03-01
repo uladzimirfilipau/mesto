@@ -1,3 +1,4 @@
 .popup__figure {
-  display: grid;
+  display: flex;
+  flex-direction: column;
 }
