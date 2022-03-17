@@ -174,3 +174,19 @@ function handleProfileFormSubmit(evt) {
 }
 // Регистрируем обработчик события по клику
 profileForm.addEventListener("submit", handleProfileFormSubmit);
+
+// Закрыть любой попап
+popups.forEach((popup) => {
+  // кликом на оверлей
+  popup.addEventListener("mousedown", (evt) => {
+    if(evt.target.classList.contains("popup_opened")) {
+      closePopup(popup);
+    }
+  });
+  // нажатием на Esc
+  document.addEventListener("keydown", (evt) => {
+    if (evt.key === ("Escape")) {
+      closePopup(popup);
+    }
+  });
+});
