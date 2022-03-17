@@ -18,6 +18,8 @@
   .popup__button-save {
     min-width: 358px;
     min-height: 50px;
+    font-size: 18px;
+    line-height: 22px;
     margin: 48px auto 0;
   }
 }
