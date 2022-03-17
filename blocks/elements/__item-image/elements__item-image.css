@@ -7,3 +7,7 @@
   object-fit: cover;
   background-color: #C4C4C4;
 }
+
+.elements__item-image:hover {
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
