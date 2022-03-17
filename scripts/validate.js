@@ -16,6 +16,24 @@ const {
   textErrorClass,
 } = object;
 
+const toggleButtonState = (
+  inputList,
+  submitButtonElement,
+  inactiveButtonClass
+) => {
+  const inputElements = Array.from(inputList);
+  const hasInvalidInput = inputElements.some((inputSelector) => {
+    return !inputSelector.validity.valid;
+  });
+  if (hasInvalidInput) {
+    submitButtonElement.classList.add(inactiveButtonClass);
+    submitButtonElement.setAttribute("disabled", true);
+  } else {
+    submitButtonElement.classList.remove(inactiveButtonClass);
+    submitButtonElement.removeAttribute("disabled");
+  }
+};
+
 const setEventListeners = (
   formSelector,
   inputSelector,
