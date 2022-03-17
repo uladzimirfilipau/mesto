@@ -23,13 +23,13 @@
         <img src="./images/Avatar.jpg" alt="Аватар" class="profile__avatar" />
         <div class="profile__info">
           <div class="profile__title-container">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <h1 class="profile__title">Вова Ф.</h1>
             <button
               aria-label="Редактировать"
               class="profile__button-edit"
             ></button>
           </div>
-          <p class="profile__subtitle">Исследователь океана</p>
+          <p class="profile__subtitle">Интернет-путешественник</p>
         </div>
         <button aria-label="Добавить" class="profile__button-add"></button>
       </section>
@@ -61,7 +61,7 @@
     </footer>
     <!-- POPUP-FORM -->
     <section class="popup popup_edit">
-      <form action="#" name="form-name" class="popup__form popup__form_name">
+      <form action="#" name="form-name" class="popup__form popup__form_name" novalidate>
         <button
           type="button"
           aria-label="Закрыть"
@@ -74,15 +74,21 @@
             name="name"
             placeholder="Введите имя"
             required
+            minlength="2"
+            maxlength="40"
             class="popup__input popup__input_type_name"
           />
+          <span class="popup__error"></span>
           <input
             type="text"
             name="job"
             placeholder="Введите профессию"
             required
+            minlength="2"
+            maxlength="200"
             class="popup__input popup__input_type_job"
           />
+          <span class="popup__error"></span>
           <button type="submit" name="button" class="popup__button-save">
             Сохранить
           </button>
@@ -91,7 +97,7 @@
     </section>
     <!-- POPUP-FORM-CARD -->
     <section class="popup popup_add">
-      <form action="#" name="form-card" class="popup__form popup__form_card">
+      <form action="#" name="form-card" class="popup__form popup__form_card" novalidate>
         <button
           type="button"
           aria-label="Закрыть"
@@ -104,15 +110,19 @@
             name="place-name"
             placeholder="Название"
             required
+            minlength="2"
+            maxlength="30"
             class="popup__input popup__input_type_title"
           />
+          <span class="popup__error"></span>
           <input
-            type="text"
+            type="url"
             name="picture-link"
             placeholder="Ссылка на картинку"
             required
             class="popup__input popup__input_type_link"
           />
+          <span class="popup__error"></span>
           <button type="submit" name="button" class="popup__button-save">
             Создать
           </button>
@@ -136,5 +146,6 @@
       </figure>
     </section>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
