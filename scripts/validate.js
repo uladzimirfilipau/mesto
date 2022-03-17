@@ -16,6 +16,22 @@ const {
   textErrorClass,
 } = object;
 
+const checkInputValidity = (inputSelector) => {
+  const isInputNotValid = !inputSelector.validity.valid;
+
+  if (isInputNotValid) {
+    const errorMessage = inputSelector.validationMessage;
+    showInputError(
+      inputSelector,
+      textErrorClass,
+      inputErrorClass,
+      errorMessage
+    );
+  } else {
+    hideInputError(inputSelector, textErrorClass, inputErrorClass);
+  }
+};
+
 const toggleButtonState = (
   inputList,
   submitButtonElement,
