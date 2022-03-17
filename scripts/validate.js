@@ -35,7 +35,7 @@ const hideInputError = (inputSelector, textErrorClass, inputErrorClass) => {
   inputSelector.classList.remove(inputErrorClass);
 };
 
-const checkInputValidity = (inputSelector, textErrorClass, inputErrorClass) => {
+const checkInputValidity = (inputSelector) => {
   const isInputNotValid = !inputSelector.validity.valid;
 
   if (isInputNotValid) {
@@ -57,8 +57,8 @@ const toggleButtonState = (
   inactiveButtonClass
 ) => {
   const inputElements = Array.from(inputList);
-  const hasInvalidInput = inputElements.some((inputSelector) => {
-    return !inputSelector.validity.valid;
+  const hasInvalidInput = inputElements.some((inputElement) => {
+    return !inputElement.validity.valid;
   });
   if (hasInvalidInput) {
     submitButtonElement.classList.add(inactiveButtonClass);
@@ -73,8 +73,6 @@ const setEventListeners = (
   formSelector,
   inputSelector,
   submitButtonSelector,
-  inputList,
-  submitButtonElement,
   inactiveButtonClass
 ) => {
   const inputList = formSelector.querySelectorAll(inputSelector);
