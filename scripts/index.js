@@ -85,7 +85,6 @@ function handleFormAddCard(evt) {
     link: inputLinkCard.value,
     name: inputTitleCard.value,
   });
-  formAddCard.reset();
   closePopupAddCard();
 };
 // Добавить класс открытия попапа
