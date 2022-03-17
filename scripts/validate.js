@@ -16,6 +16,25 @@ const {
   textErrorClass,
 } = object;
 
+const showInputError = (
+  inputSelector,
+  textErrorClass,
+  inputErrorClass,
+  errorMessage
+) => {
+  const errorElement = inputSelector.nextElementSibling;
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add(textErrorClass);
+  inputSelector.classList.add(inputErrorClass);
+};
+
+const hideInputError = (inputSelector, textErrorClass, inputErrorClass) => {
+  const errorElement = inputSelector.nextElementSibling;
+  errorElement.textContent = "";
+  errorElement.classList.remove(textErrorClass);
+  inputSelector.classList.remove(inputErrorClass);
+};
+
 const checkInputValidity = (inputSelector) => {
   const isInputNotValid = !inputSelector.validity.valid;
 
