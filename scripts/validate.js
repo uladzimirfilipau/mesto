@@ -16,6 +16,25 @@ const {
   textErrorClass,
 } = object;
 
+const setEventListeners = (
+  formSelector,
+  inputSelector,
+  submitButtonSelector
+) => {
+  const inputList = formSelector.querySelectorAll(inputSelector);
+  const submitButtonElement = formSelector.querySelector(submitButtonSelector);
+  const inputListIterator = (inputSelector) => {
+    const handleInput = (evt) => {
+      checkInputValidity(inputSelector);
+      toggleButtonState(inputList, submitButtonElement, inactiveButtonClass);
+    };
+    inputSelector.addEventListener("input", handleInput);
+  };
+  toggleButtonState(inputList, submitButtonElement, inactiveButtonClass);
+
+  inputList.forEach(inputListIterator);
+};
+
 const enableValidation = (formSelector) => {
   const formList = document.querySelectorAll(formSelector);
   const formListIterator = (formSelector) => {
