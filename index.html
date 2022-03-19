@@ -35,24 +35,7 @@
       </section>
       <!-- ELEMENTS -->
       <section class="elements" aria-label="Карточка">
-        <ul class="elements__list">
-          <template class="elements__template">
-            <li class="elements__item">
-              <figure class="elements__figure">
-                <img
-                  src="./images/Trash.svg"
-                  alt="Удалить карточку"
-                  class="elements__trash"
-                />
-                <img src="#" alt="#" class="elements__item-image" />
-                <figcaption class="elements__figure-caption">
-                  <h2 class="elements__item-title"></h2>
-                  <button class="elements__item-like"></button>
-                </figcaption>
-              </figure>
-            </li>
-          </template>
-        </ul>
+        <ul class="elements__list"></ul>
       </section>
     </main>
     <!--FOOTER-->
@@ -61,7 +44,12 @@
     </footer>
     <!-- POPUP-FORM -->
     <section class="popup popup_edit">
-      <form action="#" name="form-name" class="popup__form popup__form_name" novalidate>
+      <form
+        action="#"
+        name="form-name"
+        class="popup__form popup__form_name"
+        novalidate
+      >
         <button
           type="button"
           aria-label="Закрыть"
@@ -97,7 +85,12 @@
     </section>
     <!-- POPUP-FORM-CARD -->
     <section class="popup popup_add">
-      <form action="#" name="form-card" class="popup__form popup__form_card" novalidate>
+      <form
+        action="#"
+        name="form-card"
+        class="popup__form popup__form_card"
+        novalidate
+      >
         <button
           type="button"
           aria-label="Закрыть"
@@ -137,14 +130,27 @@
           aria-label="Закрыть"
           class="popup__button-close"
         ></button>
-        <img
-          src="#"
-          alt="#"
-          class="popup__image"
-        />
+        <img src="#" alt="#" class="popup__image" />
         <figcaption class="popup__figure-caption"></figcaption>
       </figure>
     </section>
+    <!-- TEMPLATE -->
+    <template class="elements__template">
+      <li class="elements__item">
+        <figure class="elements__figure">
+          <img
+            src="./images/Trash.svg"
+            alt="Удалить карточку"
+            class="elements__trash"
+          />
+          <img src="#" alt="#" class="elements__item-image" />
+          <figcaption class="elements__figure-caption">
+            <h2 class="elements__item-title"></h2>
+            <button class="elements__item-like"></button>
+          </figcaption>
+        </figure>
+      </li>
+    </template>
     <script src="./scripts/index.js"></script>
     <script src="./scripts/validate.js"></script>
   </body>
