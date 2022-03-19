@@ -58,6 +58,8 @@ const jobInput = profileForm.querySelector(".popup__input_type_job");
 const popups = document.querySelectorAll(".popup");
 // Создать константу со значением клавиши Escape
 const ESC_CODE = "Escape";
+// Найти кнопку отправки формы
+const buttonSubmit = document.querySelector(".popup__button-save");
 
 function createCard(item) {
   const cardElement = templateElement
@@ -82,6 +84,15 @@ function renderInitialCard(item) {
   listElement.prepend(itemElement);
 }
 
+function disableButtonSubmit() {
+  const buttonList = document.querySelectorAll(".popup__button-save");
+  function buttonListIterator (buttonSubmit) {
+    buttonSubmit.classList.add("popup__button-save_disabled");
+    buttonSubmit.disabled = true;
+  };
+  buttonList.forEach(buttonListIterator);
+}
+
 function handleFormAddCard(evt) {
   evt.preventDefault();
   renderInitialCard({
@@ -89,6 +100,7 @@ function handleFormAddCard(evt) {
     name: inputTitleCard.value,
   });
   closePopupAddCard();
+  disableButtonSubmit();
 }
 
 // Добавить класс открытия попапа
