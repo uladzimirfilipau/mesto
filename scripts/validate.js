@@ -57,8 +57,8 @@ const toggleButtonState = (
   inactiveButtonClass
 ) => {
   const inputElements = Array.from(inputList);
-  const hasInvalidInput = inputElements.some((inputElement) => {
-    return !inputElement.validity.valid;
+  const hasInvalidInput = inputElements.some((inputSelector) => {
+    return !inputSelector.validity.valid;
   });
   if (hasInvalidInput) {
     submitButtonElement.classList.add(inactiveButtonClass);
@@ -78,7 +78,7 @@ const setEventListeners = (
   const inputList = formSelector.querySelectorAll(inputSelector);
   const submitButtonElement = formSelector.querySelector(submitButtonSelector);
   const inputListIterator = (inputSelector) => {
-    const handleInput = (evt) => {
+    const handleInput = () => {
       checkInputValidity(inputSelector);
       toggleButtonState(inputList, submitButtonElement, inactiveButtonClass);
     };
@@ -89,14 +89,14 @@ const setEventListeners = (
   inputList.forEach(inputListIterator);
 };
 
-const enableValidation = (formSelector, inputSelector, submitButtonSelector) => {
+const enableValidation = (formSelector, inputSelector, submitButtonSelector, inactiveButtonClass) => {
   const formList = document.querySelectorAll(formSelector);
   const formListIterator = (formSelector) => {
     const handleFormSubmit = (evt) => {
       evt.preventDefault();
     };
     formSelector.addEventListener("submit", handleFormSubmit);
-    setEventListeners(formSelector, inputSelector, submitButtonSelector);
+    setEventListeners(formSelector, inputSelector, submitButtonSelector, inactiveButtonClass);
   };
   formList.forEach(formListIterator);
 };
