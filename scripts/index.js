@@ -1,3 +1,5 @@
+import { FormValidator } from "./FormValidator.js";
+
 const initialCards = [
   {
     name: "Эйфелева башня",
@@ -61,6 +63,22 @@ const ESC_CODE = "Escape";
 // Найти кнопку отправки формы с карточкой
 const buttonAddCardSubmit = popupAddCard.querySelector(".popup__button-save");
 
+const object = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button-save",
+  inactiveButtonClass: "popup__button-save_disabled",
+  inputErrorClass: "popup__input_type_error",
+  textErrorClass: "popup__error_visible",
+};
+
+// Создать экземпляр класса FormValidator для каждой проверяемой формы
+const ProfileFormValidator = new FormValidator(object, profileForm);
+const CardFormValidator = new FormValidator(object, formAddCard);
+
+ProfileFormValidator.enableValidation();
+CardFormValidator.enableValidation();
+
 function createCard(item) {
   const cardElement = templateElement
     .querySelector(".elements__item")
@@ -113,12 +131,12 @@ function closePopup(popup) {
 
 const openPopupAddCard = function () {
   openPopup(popupAddCard);
-}
+};
 
 const closePopupAddCard = function () {
   formAddCard.reset();
   closePopup(popupAddCard);
-}
+};
 
 // Обработчик события по клику на кнопку открытия попапа добавления карточки
 buttonOpenPopupAddCard.addEventListener("click", openPopupAddCard);
@@ -157,7 +175,7 @@ function openPopupImage(evt) {
 
 const closePopupImage = function () {
   closePopup(popupImage);
-}
+};
 // Регистрируем обработчик события по клику
 buttonCloseImage.addEventListener("click", closePopupImage);
 
@@ -165,11 +183,11 @@ const openProfilePopup = function () {
   openPopup(profilePopup);
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
-}
+};
 
 const closeProfilePopup = function () {
   closePopup(profilePopup);
-}
+};
 
 // Регистрируем обработчики событий по клику
 profileOpenButton.addEventListener("click", openProfilePopup);
