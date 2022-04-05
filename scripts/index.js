@@ -131,6 +131,7 @@ function closePopup(popup) {
 
 const openPopupAddCard = function () {
   openPopup(popupAddCard);
+  disableButtonSubmit(buttonAddCardSubmit);
 };
 
 const closePopupAddCard = function () {
