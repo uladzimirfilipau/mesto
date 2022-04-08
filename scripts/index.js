@@ -46,8 +46,7 @@ initialCards.forEach((item) => {
   renderCard(item);
 });
 
-function handleFormAddCard(evt) {
-  evt.preventDefault();
+function handleFormAddCard() {
   renderCard({
     link: inputLinkCard.value,
     name: inputTitleCard.value,
@@ -58,16 +57,17 @@ function handleFormAddCard(evt) {
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEsc);
-  CardFormValidator.disableSubmitButton();
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeByEsc);
-  CardFormValidator.resetErrors();
 }
 
 const openPopupAddCard = function () {
+  formAddCard.reset();
+  CardFormValidator.resetErrors();
+  CardFormValidator.disableSubmitButton();
   openPopup(popupAddCard);
 };
 
@@ -80,11 +80,10 @@ buttonClosePopupAddCard.addEventListener("click", closePopupAddCard);
 
 formAddCard.addEventListener("submit", handleFormAddCard);
 
-function openPopupImage(evt) {
-  const imageElement = evt.target;
-  popupImageElement.src = imageElement.src;
-  popupImageElement.alt = imageElement.alt;
-  imageCaption.textContent = imageElement.alt;
+function openPopupImage(name, link) {
+  popupImageElement.src = link;
+  popupImageElement.alt = name;
+  imageCaption.textContent = name;
 
   openPopup(popupImage);
 }
@@ -96,9 +95,12 @@ const closePopupImage = function () {
 buttonCloseImage.addEventListener("click", closePopupImage);
 
 const openProfilePopup = function () {
-  openPopup(profilePopup);
   inputName.value = profileTitle.textContent;
   inputJob.value = profileSubtitle.textContent;
+
+  ProfileFormValidator.resetErrors();
+
+  openPopup(profilePopup);
 };
 
 const closeProfilePopup = function () {
