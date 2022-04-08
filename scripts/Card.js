@@ -12,12 +12,15 @@ export class Card {
 
   _handleDelete = () => {
     this._cardElement.remove();
+    this._cardElement = null;
   };
 
   _setEvtListener() {
     this._likeElement.addEventListener("click", this._handleLike);
     this._deleteElement.addEventListener("click", this._handleDelete);
-    this._imageElement.addEventListener("click", this._openPopupImage);
+    this._imageElement.addEventListener("click", () => this._openPopupImage(
+      this._name, this._link
+      ));
   }
 
   _fillDataCard() {
