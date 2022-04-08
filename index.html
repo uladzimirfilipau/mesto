@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="icon" href="/images/favicon.png" type="image/x-icon">
     <title>Mesto</title>
   </head>
   <body class="page">
@@ -60,23 +61,25 @@
           <input
             type="text"
             name="name"
+            id="name"
             placeholder="Введите имя"
             required
             minlength="2"
             maxlength="40"
             class="popup__input popup__input_type_name"
           />
-          <span class="popup__error"></span>
+          <span class="popup__error name-error"></span>
           <input
             type="text"
             name="job"
+            id="job"
             placeholder="Введите профессию"
             required
             minlength="2"
             maxlength="200"
             class="popup__input popup__input_type_job"
           />
-          <span class="popup__error"></span>
+          <span class="popup__error job-error"></span>
           <button type="submit" name="button" class="popup__button-save">
             Сохранить
           </button>
@@ -101,21 +104,23 @@
           <input
             type="text"
             name="place-name"
+            id="place-name"
             placeholder="Название"
             required
             minlength="2"
             maxlength="30"
             class="popup__input popup__input_type_title"
           />
-          <span class="popup__error"></span>
+          <span class="popup__error place-name-error"></span>
           <input
             type="url"
             name="picture-link"
+            id="link"
             placeholder="Ссылка на картинку"
             required
             class="popup__input popup__input_type_link"
           />
-          <span class="popup__error"></span>
+          <span class="popup__error link-error"></span>
           <button type="submit" name="button" class="popup__button-save">
             Создать
           </button>
