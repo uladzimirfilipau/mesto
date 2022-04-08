@@ -1,6 +1,7 @@
 .profile__info {
   padding: 26px 0 0;
   justify-self: center;
+  max-width: 282px;
 }
 
 @media screen and (min-width: 768px) {
