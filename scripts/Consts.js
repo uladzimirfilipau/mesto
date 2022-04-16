@@ -28,7 +28,7 @@ export const initialCards = [
   ];
   
   export const templateElement = ".elements__template";
-  export const listElement = document.querySelector(".elements__list");
+  export const listElement = ".elements__list";
   export const popups = document.querySelectorAll(".popup");
   
   export const popupAddCard = document.querySelector(".popup_add");
