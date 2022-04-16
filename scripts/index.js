@@ -2,13 +2,11 @@ import {
   initialCards,
   templateElement,
   listElement,
-  popups,
   popupAddCard,
   formAddCard,
   inputLinkCard,
   inputTitleCard,
-  buttonOpenPopupAddCard,
-  buttonClosePopupAddCard,
+  openPopupAddCardButton,
   popupImage,
   popupImageElement,
   imageCaption,
@@ -21,17 +19,17 @@ import {
   profileForm,
   inputName,
   inputJob,
-  ESC_CODE,
   ProfileFormValidator,
   CardFormValidator
 } from "./Consts.js";
 
 import { Card } from "./Card.js";
 import { Section } from "./Section.js";
-
+import { Popup } from "./Popup.js";
+// FORM VALIDATOR
 ProfileFormValidator.enableValidation();
 CardFormValidator.enableValidation();
-
+// ADD DEFAULT CARDS
 const createCard = (item) => {
   const card = new Card(item, templateElement, openPopupImage);
   const newCard = card.getCard();
@@ -50,7 +48,7 @@ const сardList = new Section(
 );
 
 сardList.renderItems();
-
+// ADD CARD
 function renderCard(item) {
   const card = createCard(item);
   сardList.addItem(card);
@@ -61,32 +59,20 @@ function handleFormAddCard() {
     link: inputLinkCard.value,
     name: inputTitleCard.value,
   });
-  closePopupAddCard();
-};
-// ALL POPUP
-const openPopup = (popup) => {
-  popup.classList.add("popup_opened");
-  document.addEventListener("keydown", closeByEsc);
-};
-
-const closePopup = (popup) => {
-  popup.classList.remove("popup_opened");
-  document.removeEventListener("keydown", closeByEsc);
+  addCardPopup.close();
 };
 // ADDCARD POPUP
+const addCardPopup = new Popup(popupAddCard);
+
 const openPopupAddCard = () => {
   formAddCard.reset();
   CardFormValidator.resetErrors();
   CardFormValidator.disableSubmitButton();
-  openPopup(popupAddCard);
+  addCardPopup.setEventListeners();
+  addCardPopup.open();
 };
 
-const closePopupAddCard = () => {
-  closePopup(popupAddCard);
-};
-
-buttonOpenPopupAddCard.addEventListener("click", openPopupAddCard);
-buttonClosePopupAddCard.addEventListener("click", closePopupAddCard);
+openPopupAddCardButton.addEventListener("click", openPopupAddCard);
 
 formAddCard.addEventListener("submit", handleFormAddCard);
 // IMAGE POPUP
@@ -133,18 +119,3 @@ const handleProfileFormSubmit = (evt) => {
 };
 
 profileForm.addEventListener("submit", handleProfileFormSubmit);
-// ALL POPUP
-popups.forEach((popup) => {
-  popup.addEventListener("mousedown", (evt) => {
-    if (evt.target.classList.contains("popup_opened")) {
-      closePopup(popup);
-    }
-  });
-});
-
-const closeByEsc = (evt) => {
-  if (evt.key === ESC_CODE) {
-    const popupOpened = document.querySelector(".popup_opened");
-    closePopup(popupOpened);
-  }
-};

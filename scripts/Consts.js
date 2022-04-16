@@ -29,16 +29,14 @@ export const initialCards = [
   
   export const templateElement = ".elements__template";
   export const listElement = ".elements__list";
-  export const popups = document.querySelectorAll(".popup");
   
   export const popupAddCard = document.querySelector(".popup_add");
   export const formAddCard = popupAddCard.querySelector(".popup__form_card");
   export const inputLinkCard = formAddCard.querySelector(".popup__input_type_link");
   export const inputTitleCard = formAddCard.querySelector(".popup__input_type_title");
 
-  export const buttonOpenPopupAddCard = document.querySelector(".profile__button-add");
-  export const buttonClosePopupAddCard = popupAddCard.querySelector(".popup__button-close");
-  export const buttonAddCardSubmit = popupAddCard.querySelector(".popup__button-save");
+  export const openPopupAddCardButton = document.querySelector(".profile__button-add");
+  export const addCardSubmitButton = popupAddCard.querySelector(".popup__button-save");
 
   export const popupImage = document.querySelector(".popup_image");
   export const popupImageElement = popupImage.querySelector(".popup__image");
