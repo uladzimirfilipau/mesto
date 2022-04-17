@@ -8,9 +8,7 @@ import {
   inputTitleCard,
   openPopupAddCardButton,
   popupImage,
-  popupImageElement,
-  imageCaption,
-  buttonCloseImage,
+  closeImageButton,
   profilePopup,
   profileOpenButton,
   profileTitle,
@@ -20,47 +18,39 @@ import {
   inputName,
   inputJob,
   ProfileFormValidator,
-  CardFormValidator
+  CardFormValidator,
 } from "./Consts.js";
 
 import { Card } from "./Card.js";
 import { Section } from "./Section.js";
 import { Popup } from "./Popup.js";
+import { PopupWithImage } from "./PopupWithImage.js";
+
 // FORM VALIDATOR
 ProfileFormValidator.enableValidation();
 CardFormValidator.enableValidation();
 // ADD DEFAULT CARDS
 const createCard = (item) => {
-  const card = new Card(item, templateElement, openPopupImage);
-  const newCard = card.getCard();
-  return newCard;
+  const card = new Card(item, templateElement, openImage);
+  return card.getCard();
 };
 
-const сardList = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const cardElement = createCard(item);
-      сardList.addItem(cardElement);
-    },
-  },
-  listElement
-);
+const сardList = new Section(initialCards, renderer, listElement);
 
 сardList.renderItems();
 // ADD CARD
-function renderCard(item) {
+function renderer(item) {
   const card = createCard(item);
   сardList.addItem(card);
 }
 
 function handleFormAddCard() {
-  renderCard({
+  renderer({
     link: inputLinkCard.value,
     name: inputTitleCard.value,
   });
   addCardPopup.close();
-};
+}
 // ADDCARD POPUP
 const addCardPopup = new Popup(popupAddCard);
 
@@ -68,7 +58,7 @@ const openPopupAddCard = () => {
   formAddCard.reset();
   CardFormValidator.resetErrors();
   CardFormValidator.disableSubmitButton();
-  addCardPopup.setEventListeners();
+  //addCardPopup.setEventListeners();
   addCardPopup.open();
 };
 
@@ -76,19 +66,17 @@ openPopupAddCardButton.addEventListener("click", openPopupAddCard);
 
 formAddCard.addEventListener("submit", handleFormAddCard);
 // IMAGE POPUP
-function openPopupImage(name, link) {
-  popupImageElement.src = link;
-  popupImageElement.alt = name;
-  imageCaption.textContent = name;
+const imagePopup = new PopupWithImage(popupImage);
 
-  openPopup(popupImage);
+function openImage(name, link) {
+  imagePopup.open(name, link);
 }
 
-const closePopupImage = () => {
-  closePopup(popupImage);
+function closePopupImage () {
+  imagePopup.close();
 };
 
-buttonCloseImage.addEventListener("click", closePopupImage);
+closeImageButton.addEventListener("click", closePopupImage);
 // PROFILE POPUP
 const openProfilePopup = () => {
   inputName.value = profileTitle.textContent;
