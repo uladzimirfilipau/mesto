@@ -39,9 +39,7 @@ export const initialCards = [
   export const addCardSubmitButton = popupAddCard.querySelector(".popup__button-save");
 
   export const popupImage = document.querySelector(".popup_image");
-  export const popupImageElement = popupImage.querySelector(".popup__image");
-  export const imageCaption = popupImage.querySelector(".popup__figure-caption");
-  export const buttonCloseImage = popupImage.querySelector(".popup__button-close");
+  export const closeImageButton = popupImage.querySelector(".popup__button-close");
 
   export const profilePopup = document.querySelector(".popup_edit-profile");
   export const profileOpenButton = document.querySelector(".profile__button-edit");
