@@ -8,7 +8,7 @@ export class Section {
   // и отрисовку данных на странице.
   // Второй параметр конструктора — селектор контейнера,
   // в который нужно добавлять созданные элементы.
-    constructor({ items, renderer }, containerSelector) {
+    constructor(items, renderer, containerSelector) {
         this._items = items;
         this._renderer = renderer;
         this._container = document.querySelector(containerSelector);
