@@ -9,7 +9,8 @@ export class Popup {
     this._handleOverlayClose = this._handleOverlayClose.bind(this);
     this.close = this.close.bind(this);
   }
-  // Содержит публичные методы open и close, которые отвечают за открытие и закрытие попапа.
+  // Содержит публичные методы open и close,
+  // которые отвечают за открытие и закрытие попапа.
   open() {
     this._popup.classList.add("popup_opened");
     document.addEventListener("keydown", this._handleEscClose);
@@ -27,7 +28,8 @@ export class Popup {
       this.close();
     }
   }
-
+  // Содержит приватный метод _handleOverlayClose,
+  // который содержит логику закрытия попапа по клику на оверлее.
   _handleOverlayClose(evt) {
     if (evt.target.classList.contains("popup_opened")) {
       this.close();
