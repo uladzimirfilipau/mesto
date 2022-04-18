@@ -39,13 +39,11 @@ export const initialCards = [
   export const addCardSubmitButton = popupAddCard.querySelector(".popup__button-save");
 
   export const popupImage = document.querySelector(".popup_image");
-  export const closeImageButton = popupImage.querySelector(".popup__button-close");
 
   export const profilePopup = document.querySelector(".popup_edit-profile");
   export const profileOpenButton = document.querySelector(".profile__button-edit");
   export const profileTitle = document.querySelector(".profile__title");
   export const profileSubtitle = document.querySelector(".profile__subtitle");
-  export const profileCloseButton = profilePopup.querySelector(".popup__button-close");
   export const profileForm = profilePopup.querySelector(".popup__form_name");
   export const inputName = profileForm.querySelector(".popup__input_type_name");
   export const inputJob = profileForm.querySelector(".popup__input_type_job");
@@ -61,5 +59,5 @@ export const initialCards = [
     textErrorClass: "popup__error_visible",
   };
 
-  export const ProfileFormValidator = new FormValidator(object, profileForm);
-  export const CardFormValidator = new FormValidator(object, formAddCard);
+  export const profileFormValidator = new FormValidator(object, profileForm);
+  export const cardFormValidator = new FormValidator(object, formAddCard);
