@@ -3,35 +3,30 @@ import {
   templateElement,
   listElement,
   popupAddCard,
-  formAddCard,
   inputLinkCard,
   inputTitleCard,
   openPopupAddCardButton,
   popupImage,
-  closeImageButton,
   profilePopup,
   profileOpenButton,
   profileTitle,
   profileSubtitle,
-  profileCloseButton,
-  profileForm,
   inputName,
   inputJob,
-  ProfileFormValidator,
-  CardFormValidator,
+  profileFormValidator,
+  cardFormValidator,
 } from "./Consts.js";
 
 import { Card } from "./Card.js";
 import { Section } from "./Section.js";
-import { Popup } from "./Popup.js";
 import { PopupWithImage } from "./PopupWithImage.js";
-
+import { PopupWithForm } from "./PopupWithForm.js";
 // FORM VALIDATOR
-ProfileFormValidator.enableValidation();
-CardFormValidator.enableValidation();
+profileFormValidator.enableValidation();
+cardFormValidator.enableValidation();
 // ADD DEFAULT CARDS
 const createCard = (item) => {
-  const card = new Card(item, templateElement, openImage);
+  const card = new Card(item, templateElement, openImagePopup);
   return card.getCard();
 };
 
@@ -52,58 +47,41 @@ function handleFormAddCard() {
   addCardPopup.close();
 }
 // ADDCARD POPUP
-const addCardPopup = new Popup(popupAddCard);
+// Cоздать экземпляр класса PopupWithForm для popupAddCard
+const addCardPopup = new PopupWithForm(popupAddCard, handleFormAddCard);
 
 const openPopupAddCard = () => {
-  formAddCard.reset();
-  CardFormValidator.resetErrors();
-  CardFormValidator.disableSubmitButton();
-  //addCardPopup.setEventListeners();
+  cardFormValidator.resetErrors();
+  cardFormValidator.disableSubmitButton();
   addCardPopup.open();
 };
 
 openPopupAddCardButton.addEventListener("click", openPopupAddCard);
-
-formAddCard.addEventListener("submit", handleFormAddCard);
 // IMAGE POPUP
 const imagePopup = new PopupWithImage(popupImage);
 
-function openImage(name, link) {
+function openImagePopup(name, link) {
   imagePopup.open(name, link);
 }
-
-function closePopupImage () {
-  imagePopup.close();
-};
-
-closeImageButton.addEventListener("click", closePopupImage);
 // PROFILE POPUP
+// Cоздать экземпляр класса PopupWithForm для profilePopup
+const profileEditPopup = new PopupWithForm(profilePopup, handleProfileFormSubmit);
+
 const openProfilePopup = () => {
   inputName.value = profileTitle.textContent;
   inputJob.value = profileSubtitle.textContent;
 
-  ProfileFormValidator.resetErrors();
+  profileFormValidator.resetErrors();
 
-  openPopup(profilePopup);
-};
-
-const closeProfilePopup = () => {
-  closePopup(profilePopup);
+  profileEditPopup.open();
 };
 
 profileOpenButton.addEventListener("click", openProfilePopup);
-profileCloseButton.addEventListener("click", closeProfilePopup);
 
-const handleProfileFormSubmit = (evt) => {
-  evt.preventDefault();
+function handleProfileFormSubmit() {
 
-  const inputNameValue = inputName.value;
-  const inputJobValue = inputJob.value;
+  profileTitle.textContent = inputName.value;
+  profileSubtitle.textContent = inputJob.value;
 
-  profileTitle.textContent = inputNameValue;
-  profileSubtitle.textContent = inputJobValue;
-
-  closeProfilePopup();
+  profileEditPopup.close();
 };
-
-profileForm.addEventListener("submit", handleProfileFormSubmit);
