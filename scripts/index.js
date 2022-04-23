@@ -12,7 +12,7 @@ import {
   profileTitle,
   profileSubtitle,
   inputName,
-  inputJob,
+  inputInfo,
   profileFormValidator,
   cardFormValidator,
 } from "./Consts.js";
@@ -21,34 +21,45 @@ import { Card } from "./Card.js";
 import { Section } from "./Section.js";
 import { PopupWithImage } from "./PopupWithImage.js";
 import { PopupWithForm } from "./PopupWithForm.js";
-// FORM VALIDATOR
+import { UserInfo } from "./UserInfo.js";
+
 profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();
-// ADD DEFAULT CARDS
+
+const openImagePopup = (name, link) => {
+  const imagePopup = new PopupWithImage(popupImage);
+  imagePopup.open(name, link);
+  imagePopup.setEventListeners();
+}
+
+// RENDER CARDS
 const createCard = (item) => {
   const card = new Card(item, templateElement, openImagePopup);
   return card.getCard();
 };
 
-const сardList = new Section(initialCards, renderer, listElement);
+const сardList = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = createCard(item);
+      сardList.addItem(card);
+    },
+  },
+  listElement
+);
 
 сardList.renderItems();
-// ADD CARD
-function renderer(item) {
-  const card = createCard(item);
-  сardList.addItem(card);
-}
-
-function handleFormAddCard() {
-  renderer({
-    link: inputLinkCard.value,
-    name: inputTitleCard.value,
-  });
-  addCardPopup.close();
-}
 // ADDCARD POPUP
-// Cоздать экземпляр класса PopupWithForm для popupAddCard
-const addCardPopup = new PopupWithForm(popupAddCard, handleFormAddCard);
+const addCardPopup = new PopupWithForm(popupAddCard, {
+  handleFormSubmit: () => {
+    const card = createCard({
+      link: inputLinkCard.value,
+      name: inputTitleCard.value,
+    });
+    сardList.addItem(card);
+  },
+});
 
 const openPopupAddCard = () => {
   cardFormValidator.resetErrors();
@@ -56,32 +67,28 @@ const openPopupAddCard = () => {
   addCardPopup.open();
 };
 
+addCardPopup.setEventListeners();
 openPopupAddCardButton.addEventListener("click", openPopupAddCard);
-// IMAGE POPUP
-const imagePopup = new PopupWithImage(popupImage);
 
-function openImagePopup(name, link) {
-  imagePopup.open(name, link);
-}
 // PROFILE POPUP
-// Cоздать экземпляр класса PopupWithForm для profilePopup
-const profileEditPopup = new PopupWithForm(profilePopup, handleProfileFormSubmit);
+const userInfo = new UserInfo({
+  userNameSelector: profileTitle,
+  userInfoSelector: profileSubtitle,
+});
+
+const profileEditPopup = new PopupWithForm(profilePopup, {
+  handleFormSubmit: (data) => {
+    userInfo.setUserInfo(data);
+  },
+});
 
 const openProfilePopup = () => {
-  inputName.value = profileTitle.textContent;
-  inputJob.value = profileSubtitle.textContent;
-
+  const profileData = userInfo.getUserInfo();
+  inputName.value = profileData.name;
+  inputInfo.value = profileData.info;
   profileFormValidator.resetErrors();
-
   profileEditPopup.open();
 };
 
+profileEditPopup.setEventListeners();
 profileOpenButton.addEventListener("click", openProfilePopup);
-
-function handleProfileFormSubmit() {
-
-  profileTitle.textContent = inputName.value;
-  profileSubtitle.textContent = inputJob.value;
-
-  profileEditPopup.close();
-};
