@@ -46,7 +46,7 @@ export const initialCards = [
   export const profileSubtitle = document.querySelector(".profile__subtitle");
   export const profileForm = profilePopup.querySelector(".popup__form_name");
   export const inputName = profileForm.querySelector(".popup__input_type_name");
-  export const inputJob = profileForm.querySelector(".popup__input_type_job");
+  export const inputInfo = profileForm.querySelector(".popup__input_type_info");
   
   export const ESC_CODE = "Escape";
 
