@@ -3,46 +3,50 @@ import {
   templateElement,
   listElement,
   popupAddCard,
-  inputLinkCard,
-  inputTitleCard,
+  formAddCard,
   openPopupAddCardButton,
   popupImage,
   profilePopup,
   profileOpenButton,
   profileTitle,
   profileSubtitle,
+  profileForm,
   inputName,
   inputInfo,
-  profileFormValidator,
-  cardFormValidator,
-} from "./Consts.js";
+  object
+} from "../components/Consts.js";
 
-import { Card } from "./Card.js";
-import { Section } from "./Section.js";
-import { PopupWithImage } from "./PopupWithImage.js";
-import { PopupWithForm } from "./PopupWithForm.js";
-import { UserInfo } from "./UserInfo.js";
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { Section } from "../components/Section.js";
+import { PopupWithImage } from "../components/PicturePopup.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
+import { UserInfo } from "../components/UserInfo.js";
+
+const profileFormValidator = new FormValidator(object, profileForm);
+const cardFormValidator = new FormValidator(object, formAddCard);
 
 profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();
+// IMAGE POPUP
+const imagePopup = new PopupWithImage(popupImage);
 
 const openImagePopup = (name, link) => {
-  const imagePopup = new PopupWithImage(popupImage);
   imagePopup.open(name, link);
-  imagePopup.setEventListeners();
 }
 
+imagePopup.setEventListeners();
 // RENDER CARDS
-const createCard = (item) => {
-  const card = new Card(item, templateElement, openImagePopup);
+const createCard = (data) => {
+  const card = new Card(data, templateElement, openImagePopup);
   return card.getCard();
 };
 
 const сardList = new Section(
   {
     items: initialCards,
-    renderer: (item) => {
-      const card = createCard(item);
+    renderer: (data) => {
+      const card = createCard(data);
       сardList.addItem(card);
     },
   },
@@ -52,12 +56,9 @@ const сardList = new Section(
 сardList.renderItems();
 // ADDCARD POPUP
 const addCardPopup = new PopupWithForm(popupAddCard, {
-  handleFormSubmit: () => {
-    const card = createCard({
-      link: inputLinkCard.value,
-      name: inputTitleCard.value,
-    });
-    сardList.addItem(card);
+  handleFormSubmit: (data) => {
+    const newCard = createCard(data);
+    сardList.addItem(newCard);
   },
 });
 
@@ -69,7 +70,6 @@ const openPopupAddCard = () => {
 
 addCardPopup.setEventListeners();
 openPopupAddCardButton.addEventListener("click", openPopupAddCard);
-
 // PROFILE POPUP
 const userInfo = new UserInfo({
   userNameSelector: profileTitle,
