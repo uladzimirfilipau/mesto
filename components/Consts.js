@@ -1,5 +1,3 @@
-import { FormValidator } from "./FormValidator.js";
-
 export const initialCards = [
     {
       name: "Эйфелева башня",
@@ -32,8 +30,6 @@ export const initialCards = [
   
   export const popupAddCard = document.querySelector(".popup_add");
   export const formAddCard = popupAddCard.querySelector(".popup__form_card");
-  export const inputLinkCard = formAddCard.querySelector(".popup__input_type_link");
-  export const inputTitleCard = formAddCard.querySelector(".popup__input_type_title");
 
   export const openPopupAddCardButton = document.querySelector(".profile__button-add");
   export const addCardSubmitButton = popupAddCard.querySelector(".popup__button-save");
@@ -58,6 +54,3 @@ export const initialCards = [
     inputErrorClass: "popup__input_type_error",
     textErrorClass: "popup__error_visible",
   };
-
-  export const profileFormValidator = new FormValidator(object, profileForm);
-  export const cardFormValidator = new FormValidator(object, formAddCard);
