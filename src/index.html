@@ -4,15 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/src/pages/index.css" />
-    <link rel="icon" href="/src/images/favicon.png" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="/src/pages/index.css" /> -->
+    <link
+      rel="icon"
+      href="<%=require('/src/images/favicon.png')%>"
+      type="image/x-icon"
+    />
     <title>Mesto</title>
   </head>
   <body class="page">
     <!--HEADER-->
     <header class="header">
       <img
-        src="/src/images/logo.svg"
+        src="<%=require('/src/images/logo.svg')%>"
         alt="Логотип Mesto Russia"
         class="header__logo"
       />
@@ -21,7 +25,11 @@
     <main class="content">
       <!-- PROFILE -->
       <section class="profile">
-        <img src="/src/images/Avatar.jpg" alt="Аватар" class="profile__avatar" />
+        <img
+          src="<%=require('/src/images/Avatar.jpg')%>"
+          alt="Аватар"
+          class="profile__avatar"
+        />
         <div class="profile__info">
           <div class="profile__title-container">
             <h1 class="profile__title">Вова Ф.</h1>
@@ -145,7 +153,7 @@
       <li class="elements__item">
         <figure class="elements__figure">
           <img
-            src="./images/Trash.svg"
+            src="<%=require('./images/Trash.svg')%>"
             alt="Удалить карточку"
             class="elements__trash"
           />
@@ -157,6 +165,6 @@
         </figure>
       </li>
     </template>
-    <script type="module" src="./pages/index.js" defer></script>
+    <!-- <script type="module" src="./pages/index.js" defer></script> -->
   </body>
 </html>
