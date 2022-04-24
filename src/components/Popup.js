@@ -1,4 +1,4 @@
-import { ESC_CODE } from "./Consts.js";
+import { ESC_CODE } from "../utils/constants.js";
 // Создать класс Popup, который отвечает за открытие и закрытие попапа.
 export class Popup {
   // Принимает в конструктор единственный параметр — селектор попапа.
