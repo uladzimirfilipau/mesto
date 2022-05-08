@@ -25,6 +25,7 @@ import {
 
 import { Card } from "../components/Card.js";
 import { Section } from "../components/Section.js";
+import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
@@ -37,8 +38,12 @@ avatarFormValidator.enableValidation();
 // ADDCARD POPUP
 const addCardPopup = new PopupWithForm(popupAddCard, {
   handleFormSubmit: (data) => {
-    const newCard = createCard(data);
-    сardList.addItem(newCard);
+    addCardPopup.renderLoading(true);
+    api
+      .addCard(data)
+      .then((item) => renderer(item))
+      .catch(error)
+      .finally(() => addCardPopup.renderLoading(false));
   },
 });
 
@@ -49,7 +54,7 @@ const openPopupAddCard = () => {
 };
 
 addCardPopup.setEventListeners();
-openPopupAddCardButton.addEventListener("click", openPopupAddCard);
+addCardButton.addEventListener("click", openPopupAddCard);
 
 // DELETE CARD POPUP
 const deleteCardConfirmPopup = new PopupWithConfirmation(deleteCardPopup);
