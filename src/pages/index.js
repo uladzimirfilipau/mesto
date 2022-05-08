@@ -34,34 +34,6 @@ profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();
 avatarFormValidator.enableValidation();
 
-// IMAGE POPUP
-const imagePopup = new PopupWithImage(popupImage);
-
-const openImagePopup = (name, link) => {
-  imagePopup.open(name, link);
-}
-
-imagePopup.setEventListeners();
-
-// RENDER CARDS
-const createCard = (data) => {
-  const card = new Card(data, templateElement, openImagePopup);
-  return card.getCard();
-};
-
-const сardList = new Section(
-  {
-    items: initialCards,
-    renderer: (data) => {
-      const card = createCard(data);
-      сardList.addItem(card);
-    },
-  },
-  listElement
-);
-
-сardList.renderItems();
-
 // ADDCARD POPUP
 const addCardPopup = new PopupWithForm(popupAddCard, {
   handleFormSubmit: (data) => {
@@ -78,6 +50,56 @@ const openPopupAddCard = () => {
 
 addCardPopup.setEventListeners();
 openPopupAddCardButton.addEventListener("click", openPopupAddCard);
+
+// DELETE CARD POPUP
+const deleteCardConfirmPopup = new PopupWithConfirmation(deleteCardPopup);
+deleteCardConfirmPopup.setEventListeners();
+
+// IMAGE POPUP
+const imagePopup = new PopupWithImage(popupImage);
+imagePopup.setEventListeners();
+
+// RENDER CARDS
+const createCard = (data) => {
+  const card = new Card(data, userId, templateElement, {
+    handleCardClick: () => imagePopup.open(data.name, data.link),
+
+    handleLikeClick: (id) => {
+      if (card.userLike()) {
+        api
+          .deleteLike(id)
+          .then((data) => card.handleLike(data.likes))
+          .catch(error);
+      } else {
+        api
+          .addLike(id)
+          .then((data) => card.handleLike(data.likes))
+          .catch(error);
+      }
+    },
+
+    handleDeleteIconClick: () => {
+      deleteCardConfirmPopup.open();
+      deleteCardConfirmPopup.confirm(() => {
+        deleteCardConfirmPopup.renderDelete(true);
+        api
+          .deleteCard(data._id)
+          .then(() => card.handleDelete())
+          .catch(error)
+          .finally(() => deleteCardConfirmPopup.renderDelete(false));
+      });
+    },
+  });
+
+  return card.getCard();
+};
+
+const renderer = (data) => {
+  const card = createCard(data);
+  сardList.addItem(card);
+};
+
+const сardList = new Section(renderer, listElement);
 
 // PROFILE DATA
 const userInfo = new UserInfo({
