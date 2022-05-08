@@ -25,34 +25,48 @@
     <main class="content">
       <!-- PROFILE -->
       <section class="profile">
-        <img
-          src="<%=require('/src/images/Avatar.jpg')%>"
-          alt="Аватар"
-          class="profile__avatar"
-        />
+        <div class="profile__avatar-container">
+          <img
+            src="<%=require('/src/images/edit-avatar.png')%>"
+            alt="Редактировать аватар"
+            class="profile__avatar-edit"
+          />
+          <img
+            src="#"
+            alt="Аватар"
+            class="profile__avatar"
+          />
+        </div>
         <div class="profile__info">
           <div class="profile__title-container">
-            <h1 class="profile__title">Вова Ф.</h1>
+            <h1 class="profile__title">
+              <!-- USER NAME -->
+            </h1>
             <button
-              aria-label="Редактировать"
+              aria-label="Редактировать профиль"
               class="profile__button-edit"
             ></button>
           </div>
-          <p class="profile__subtitle">Интернет-путешественник</p>
+          <p class="profile__subtitle">
+            <!-- USER INFO -->
+          </p>
         </div>
-        <button aria-label="Добавить" class="profile__button-add"></button>
+        <button
+          aria-label="Добавить карточку"
+          class="profile__button-add"
+        ></button>
       </section>
       <!-- ELEMENTS -->
       <section class="elements" aria-label="Карточка">
-        <!-- Контейнер для добавления карточек -->
+        <!-- ADD CARD CONTAINER -->
         <ul class="elements__list"></ul>
       </section>
     </main>
     <!--FOOTER-->
     <footer class="footer">
-      <p class="footer__copyright">&copy; 2022. Вова Ф.</p>
+      <p class="footer__copyright">&copy; 2022. ВОВА Ф.</p>
     </footer>
-    <!-- POPUP-FORM-EDITPROFILE -->
+    <!-- POPUP-FORM-EDIT-PROFILE -->
     <section class="popup popup_edit-profile">
       <form
         action="#"
@@ -80,7 +94,7 @@
           <span class="popup__error name-error"></span>
           <input
             type="text"
-            name="info"
+            name="about"
             id="info"
             placeholder="Введите профессию"
             required
@@ -89,13 +103,13 @@
             class="popup__input popup__input_type_info"
           />
           <span class="popup__error info-error"></span>
-          <button type="submit" name="button" class="popup__button-save">
-            Сохранить
+          <button type="submit" name="button" class="popup__button-submit">
+            <span class="popup__button-text">Сохранить</span>
           </button>
         </div>
       </form>
     </section>
-    <!-- POPUP-FORM-ADDCARD -->
+    <!-- POPUP-FORM-ADD-CARD -->
     <section class="popup popup_add">
       <form
         action="#"
@@ -130,8 +144,8 @@
             class="popup__input popup__input_type_link"
           />
           <span class="popup__error link-error"></span>
-          <button type="submit" name="button" class="popup__button-save">
-            Создать
+          <button type="submit" name="button" class="popup__button-submit">
+            <span class="popup__button-text">Создать</span>
           </button>
         </div>
       </form>
@@ -148,22 +162,81 @@
         <figcaption class="popup__figure-caption"></figcaption>
       </figure>
     </section>
-    <!-- TEMPLATE -->
+    <!-- POPUP-DELETE-CARD -->
+    <section class="popup popup_delete-card">
+      <form
+        action="#"
+        name="form-name"
+        class="popup__form popup__form_delete-card"
+        novalidate
+      >
+        <button
+          type="button"
+          aria-label="Закрыть"
+          class="popup__button-close"
+        ></button>
+        <div class="popup__content">
+          <h2 class="popup__title">Вы уверены?</h2>
+          <button type="submit" name="button" class="popup__button-confirm">
+            <span class="popup__button-text">Да</span>
+          </button>
+        </div>
+      </form>
+    </section>
+    <!-- POPUP-FORM-EDIT-AVATAR -->
+    <section class="popup popup_edit-avatar">
+      <form
+        action="#"
+        name="form-card"
+        class="popup__form popup__form_edit-avatar"
+        novalidate
+      >
+        <button
+          type="button"
+          aria-label="Закрыть"
+          class="popup__button-close"
+        ></button>
+        <div class="popup__content">
+          <h2 class="popup__title">Обновить аватар</h2>
+          <input
+            type="url"
+            name="avatar"
+            id="link"
+            placeholder="Ссылка на картинку"
+            required
+            class="popup__input popup__input_type_link-avatar"
+          />
+          <span class="popup__error link-error"></span>
+          <button type="submit" name="button" class="popup__button-submit">
+            <span class="popup__button-text">Сохранить</span>
+          </button>
+        </div>
+      </form>
+    </section>
+    <!-- TEMPLATE-CARD -->
     <template class="elements__template">
       <li class="elements__item">
         <figure class="elements__figure">
           <img
             src="<%=require('./images/Trash.svg')%>"
             alt="Удалить карточку"
-            class="elements__trash"
+            class="elements__button-delete"
           />
           <img src="#" alt="#" class="elements__item-image" />
           <figcaption class="elements__figure-caption">
             <h2 class="elements__item-title"></h2>
-            <button class="elements__item-like"></button>
+            <div class="elements__like-container">
+              <button class="elements__item-like"></button>
+              <p class="elements__like-number">0</p>
+            </div>
           </figcaption>
         </figure>
       </li>
+    </template>
+    <!-- TEMPLATE-BUTTON-TEXT -->
+    <template class="text__template">
+      <span class="popup__button-text_saving">Сохранение...</span>
+      <span class="popup__button-text_delete">Удаление...</span>
     </template>
     <!-- <script type="module" src="./pages/index.js" defer></script> -->
   </body>
