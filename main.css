@@ -38,7 +38,7 @@
 .popup__title{align-self:flex-start;color:#000;font-size:18px;font-style:normal;font-weight:900;line-height:22px;margin:0}@media screen and (min-width:768px){.popup__title{font-size:24px;line-height:29px}}
 .popup__input{border:none;border-bottom:1px solid rgba(0,0,0,.2);color:#000;font-size:14px;font-style:normal;font-weight:400;line-height:17px;min-height:27px;min-width:238px}@media screen and (min-width:768px){.popup__input{min-width:358px}}
 .popup__input_type_name{margin:75px 0 0}@media screen and (min-width:768px){.popup__input_type_name{margin:54px 0 0}}
-.popup__input_type_info{margin:0}
+.popup__input_type_about{margin:0}
 .popup__input_type_title{margin:75px 0 0}@media screen and (min-width:768px){.popup__input_type_title{margin:54px 0 0}}
 .popup__input_type_link{margin:0}
 .popup__button-submit{background-color:#000;border:none;border-radius:2px;margin:15px auto 0;min-height:46px;min-width:238px;transition:opacity .3s linear}@media screen and (min-width:768px){.popup__button-submit{margin:18px auto 0;min-height:50px;min-width:358px}}.popup__button-submit:hover{cursor:pointer;opacity:.8}
@@ -57,5 +57,5 @@
 .popup_delete-card{background-color:rgba(0,0,0,.5)}
 .popup__button-confirm{background-color:#000;border:none;border-radius:2px;margin:15px auto 0;min-height:46px;min-width:238px;transition:opacity .3s linear}@media screen and (min-width:768px){.popup__button-confirm{margin:38px auto 0;min-height:50px;min-width:358px}}.popup__button-confirm:hover{cursor:pointer;opacity:.8}
 .popup_edit-avatar{background-color:rgba(0,0,0,.5)}
-.popup__input_type_link-avatar{margin:54px 0 0}
+.popup__input_type_avatar{margin:54px 0 0}
 
