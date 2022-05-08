@@ -15,7 +15,8 @@ import {
   profileForm,
   inputName,
   inputInfo,
-  object
+  object,
+  api,
 } from "../utils/constants.js";
 
 import { Card } from "../components/Card.js";
@@ -94,3 +95,17 @@ const openProfilePopup = () => {
 
 profileEditPopup.setEventListeners();
 profileOpenButton.addEventListener("click", openProfilePopup);
+
+// INITIAL DATA
+let userId;
+
+api
+  .getInitialData()
+  .then((data) => {
+    const [profileData, cardsData] = data;
+    userId = profileData._id;
+    userInfo.setUserAvatar(profileData);
+    userInfo.setUserInfo(profileData);
+    сardList.renderItems(cardsData);
+  })
+  .catch(error);
