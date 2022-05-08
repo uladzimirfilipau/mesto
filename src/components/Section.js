@@ -8,8 +8,8 @@ export class Section {
   // и отрисовку данных на странице.
   // Второй параметр конструктора — селектор контейнера,
   // в который нужно добавлять созданные элементы.
-  constructor(renderCard, containerSelector) {
-    this._renderer = renderCard;
+  constructor(renderer, containerSelector) {
+    this._renderer = renderer;
     this._container = document.querySelector(containerSelector);
   }
   // Публичный метод, который отвечает за отрисовку всех элементов.

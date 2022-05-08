@@ -55,7 +55,6 @@ export const initialCards = [
   export const avatarEditButton = document.querySelector(".profile__avatar-edit");
   export const avatarEditPopup = document.querySelector(".popup_edit-avatar");
   const avatarForm = avatarEditPopup.querySelector(".popup__form_edit-avatar");
-  export const avatarInputLink = avatarForm.querySelector(".popup__input_type_link-avatar");
 
   export const profilePopup = document.querySelector(".popup_edit-profile");
   export const profileEditButton = document.querySelector(".profile__button-edit");
@@ -63,7 +62,7 @@ export const initialCards = [
   export const profileSubtitle = document.querySelector(".profile__subtitle");
   const profileForm = profilePopup.querySelector(".popup__form_name");
   export const inputName = profileForm.querySelector(".popup__input_type_name");
-  export const inputInfo = profileForm.querySelector(".popup__input_type_info");
+  export const inputInfo = profileForm.querySelector(".popup__input_type_about");
   
   export const ESC_CODE = "Escape";
 
@@ -76,7 +75,7 @@ export const initialCards = [
     textErrorClass: "popup__error_visible",
   };
 
- export const api = new Api({
+  export const api = new Api({
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-40/",
   headers: {
     authorization: "d16804bc-f4c3-4d6d-8780-e08fffa15972",
