@@ -1,36 +1,39 @@
 import "./index.css";
 
 import {
-  initialCards,
   templateElement,
   listElement,
   popupAddCard,
-  formAddCard,
-  openPopupAddCardButton,
+  addCardButton,
+  deleteCardPopup,
   popupImage,
+  profileAvatar,
+  avatarEditButton,
+  avatarEditPopup,
   profilePopup,
-  profileOpenButton,
+  profileEditButton,
   profileTitle,
   profileSubtitle,
-  profileForm,
   inputName,
   inputInfo,
-  object,
+  profileFormValidator,
+  cardFormValidator,
+  avatarFormValidator,
   api,
+  error,
 } from "../utils/constants.js";
 
 import { Card } from "../components/Card.js";
-import { FormValidator } from "../components/FormValidator.js";
 import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
 
-const profileFormValidator = new FormValidator(object, profileForm);
-const cardFormValidator = new FormValidator(object, formAddCard);
-
+// VALIDATION
 profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
+
 // IMAGE POPUP
 const imagePopup = new PopupWithImage(popupImage);
 
@@ -39,6 +42,7 @@ const openImagePopup = (name, link) => {
 }
 
 imagePopup.setEventListeners();
+
 // RENDER CARDS
 const createCard = (data) => {
   const card = new Card(data, templateElement, openImagePopup);
@@ -57,6 +61,7 @@ const сardList = new Section(
 );
 
 сardList.renderItems();
+
 // ADDCARD POPUP
 const addCardPopup = new PopupWithForm(popupAddCard, {
   handleFormSubmit: (data) => {
@@ -73,28 +78,55 @@ const openPopupAddCard = () => {
 
 addCardPopup.setEventListeners();
 openPopupAddCardButton.addEventListener("click", openPopupAddCard);
-// PROFILE POPUP
+
+// PROFILE DATA
 const userInfo = new UserInfo({
+  userAvatarSelector: profileAvatar,
   userNameSelector: profileTitle,
   userInfoSelector: profileSubtitle,
 });
 
+const avatarPopup = new PopupWithForm(avatarEditPopup, {
+  handleFormSubmit: (data) => {
+    avatarPopup.renderLoading(true);
+    api
+      .editProfileAvatar(data)
+      .then((data) => userInfo.setUserAvatar(data))
+      .catch(error)
+      .finally(() => avatarPopup.renderLoading(false));
+  },
+});
+
+const openAvatarEditPopup = () => {
+  avatarFormValidator.resetErrors();
+  avatarFormValidator.disableSubmitButton();
+  avatarPopup.open();
+};
+
+avatarPopup.setEventListeners();
+avatarEditButton.addEventListener("click", openAvatarEditPopup);
+
 const profileEditPopup = new PopupWithForm(profilePopup, {
   handleFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
+    profileEditPopup.renderLoading(true);
+    api
+      .editProfileInfo(data)
+      .then((data) => userInfo.setUserInfo(data))
+      .catch(error)
+      .finally(() => profileEditPopup.renderLoading(false));
   },
 });
 
 const openProfilePopup = () => {
-  const profileData = userInfo.getUserInfo();
-  inputName.value = profileData.name;
-  inputInfo.value = profileData.info;
+  const userData = userInfo.getUserInfo();
+  inputName.value = userData.name;
+  inputInfo.value = userData.about;
   profileFormValidator.resetErrors();
   profileEditPopup.open();
 };
 
 profileEditPopup.setEventListeners();
-profileOpenButton.addEventListener("click", openProfilePopup);
+profileEditButton.addEventListener("click", openProfilePopup);
 
 // INITIAL DATA
 let userId;
