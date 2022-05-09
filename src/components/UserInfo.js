@@ -1,12 +1,14 @@
 // Создать класс UserInfo, который отвечает
 // за управление отображением информации о пользователе на странице.
 export class UserInfo {
-  // Класс принимает в конструктор объект с селекторами двух элементов:
-  // элемента имени пользователя и элемента информации о себе.
-  constructor({ userAvatarSelector, userNameSelector, userInfoSelector }) {
+  // Класс принимает в конструктор объект с селекторами элементов:
+  // элемента аватара пользователя, элемента имени пользователя,
+  // элемента информации о себе и идентификатор пользователя
+  constructor({ userAvatarSelector, userNameSelector, userInfoSelector, userId }) {
     this._avatar = userAvatarSelector;
     this._name = userNameSelector;
     this._info = userInfoSelector;
+    this._id = userId;
   }
   // Создать публичный метод getUserInfo,
   // который возвращает объект с данными пользователя.
@@ -21,12 +23,10 @@ export class UserInfo {
   // Создать публичный метод setUserInfo,
   // который принимает новые данные пользователя
   // и добавляет их на страницу.
-  setUserInfo(data) {
-    this._name.textContent = data.name;
-    this._info.textContent = data.about;
-  }
-
-  setUserAvatar(data) {
-    this._avatar.src = data.avatar;
+  setUserInfo({ name, about, avatar, _id }) {
+    this._name.textContent = name;
+    this._info.textContent = about;
+    this._avatar.src = avatar;
+    this._id = _id;
   }
 }

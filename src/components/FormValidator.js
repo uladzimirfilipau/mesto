@@ -10,6 +10,10 @@ export class FormValidator {
     this._submitButtonElement = this._form.querySelector(
       this._object.submitButtonSelector
     );
+    
+    this._submitTextElement = this._submitButtonElement.querySelector(
+      this._object.submitTextSelector
+    );
   }
 
   _showInputError(inputElement, errorMessage) {
@@ -37,13 +41,13 @@ export class FormValidator {
 
   disableSubmitButton() {
     this._submitButtonElement.classList.add(this._object.inactiveButtonClass);
+    this._submitTextElement.classList.add(this._object.inactiveTextClass);
     this._submitButtonElement.setAttribute("disabled", true);
   }
 
   _enableSubmitButton() {
-    this._submitButtonElement.classList.remove(
-      this._object.inactiveButtonClass
-    );
+    this._submitButtonElement.classList.remove(this._object.inactiveButtonClass);
+    this._submitTextElement.classList.remove(this._object.inactiveTextClass);
     this._submitButtonElement.removeAttribute("disabled");
   }
 

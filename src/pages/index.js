@@ -4,36 +4,40 @@ import {
   templateElement,
   listElement,
   popupAddCard,
+  addCardForm,
   addCardButton,
   deleteCardPopup,
   popupImage,
   profileAvatar,
   avatarEditButton,
   avatarEditPopup,
+  avatarForm,
   profilePopup,
+  profileForm,
   profileEditButton,
   profileTitle,
   profileSubtitle,
-  inputName,
-  inputInfo,
-  profileFormValidator,
-  cardFormValidator,
-  avatarFormValidator,
-  api,
-  error,
+  object
 } from "../utils/constants.js";
+import { handleError } from "../utils/utils.js";
 
 import { Card } from "../components/Card.js";
 import { Section } from "../components/Section.js";
+import { FormValidator } from "../components/FormValidator.js";
 import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
+import { Api } from "../components/Api.js";
 
-// VALIDATION
-profileFormValidator.enableValidation();
-cardFormValidator.enableValidation();
-avatarFormValidator.enableValidation();
+// API
+export const api = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-40/",
+  headers: {
+    authorization: "d16804bc-f4c3-4d6d-8780-e08fffa15972",
+    "Content-Type": "application/json",
+  },
+});
 
 // ADDCARD POPUP
 const addCardPopup = new PopupWithForm(popupAddCard, {
@@ -42,8 +46,11 @@ const addCardPopup = new PopupWithForm(popupAddCard, {
     api
       .addCard(data)
       .then((item) => renderer(item))
-      .catch(error)
-      .finally(() => addCardPopup.renderLoading(false));
+      .catch(handleError)
+      .finally(() => {
+        addCardPopup.renderLoading(false);
+        addCardPopup.close();
+      });
   },
 });
 
@@ -74,12 +81,12 @@ const createCard = (data) => {
         api
           .deleteLike(id)
           .then((data) => card.handleLike(data.likes))
-          .catch(error);
+          .catch(handleError);
       } else {
         api
           .addLike(id)
           .then((data) => card.handleLike(data.likes))
-          .catch(error);
+          .catch(handleError);
       }
     },
 
@@ -90,8 +97,11 @@ const createCard = (data) => {
         api
           .deleteCard(data._id)
           .then(() => card.handleDelete())
-          .catch(error)
-          .finally(() => deleteCardConfirmPopup.renderDelete(false));
+          .catch(handleError)
+          .finally(() => {
+            deleteCardConfirmPopup.renderDelete(false);
+            deleteCardConfirmPopup.close();
+          });
       });
     },
   });
@@ -111,6 +121,7 @@ const userInfo = new UserInfo({
   userAvatarSelector: profileAvatar,
   userNameSelector: profileTitle,
   userInfoSelector: profileSubtitle,
+  userId: userId,
 });
 
 const avatarPopup = new PopupWithForm(avatarEditPopup, {
@@ -118,9 +129,12 @@ const avatarPopup = new PopupWithForm(avatarEditPopup, {
     avatarPopup.renderLoading(true);
     api
       .editProfileAvatar(data)
-      .then((data) => userInfo.setUserAvatar(data))
-      .catch(error)
-      .finally(() => avatarPopup.renderLoading(false));
+      .then((data) => userInfo.setUserInfo(data))
+      .catch(handleError)
+      .finally(() => {
+        avatarPopup.renderLoading(false);
+        avatarPopup.close();
+      });
   },
 });
 
@@ -139,15 +153,18 @@ const profileEditPopup = new PopupWithForm(profilePopup, {
     api
       .editProfileInfo(data)
       .then((data) => userInfo.setUserInfo(data))
-      .catch(error)
-      .finally(() => profileEditPopup.renderLoading(false));
+      .catch(handleError)
+      .finally(() => {
+        profileEditPopup.renderLoading(false);
+        profileEditPopup.close();
+      });
   },
 });
 
 const openProfilePopup = () => {
   const userData = userInfo.getUserInfo();
-  inputName.value = userData.name;
-  inputInfo.value = userData.about;
+  profileEditPopup.setInputValues(userData);
+
   profileFormValidator.resetErrors();
   profileEditPopup.open();
 };
@@ -163,8 +180,16 @@ api
   .then((data) => {
     const [profileData, cardsData] = data;
     userId = profileData._id;
-    userInfo.setUserAvatar(profileData);
     userInfo.setUserInfo(profileData);
     сardList.renderItems(cardsData);
   })
-  .catch(error);
+  .catch(handleError);
+
+  // VALIDATION
+const profileFormValidator = new FormValidator(object, profileForm);
+const cardFormValidator = new FormValidator(object, addCardForm);
+const avatarFormValidator = new FormValidator(object, avatarForm);
+
+profileFormValidator.enableValidation();
+cardFormValidator.enableValidation();
+avatarFormValidator.enableValidation();

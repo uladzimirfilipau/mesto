@@ -4,6 +4,7 @@ export class Popup {
   // Принимает в конструктор единственный параметр — селектор попапа.
   constructor(popupSelector) {
     this._popup = popupSelector;
+    
     this._form = this._popup.querySelector(".popup__form");
     this._buttonText = this._popup.querySelector(".popup__button-text");
     this._closeButton = this._popup.querySelector(".popup__button-close");

@@ -55,6 +55,7 @@
 @import url(../blocks/popup/__error/_visible/popup__error_visible.css);
 @import url(../blocks/popup/__button-submit/_disabled/popup__button-submit_disabled.css);
 @import url(../blocks/popup/__button-text/popup__button-text.css);
+@import url(../blocks/popup/__button-text/_disabled/popup__button-text_disabled.css);
 @import url(../blocks/popup/__button-text/_saving/popup__button-text_saving.css);
 @import url(../blocks/popup/__button-text/_delete/popup__button-text_delete.css);
 /* POPUP-IMAGE */
@@ -63,7 +64,7 @@
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__figure-caption/popup__figure-caption.css);
 /* POPUP-DELETE-CARD */
-@import url(../blocks/popup/_delete-card/_delete-card.css);
+@import url(../blocks/popup/_delete-card/popup_delete-card.css);
 @import url(../blocks/popup/__button-confirm/popup__button-confirm.css);
 /* POPUP-FORM-EDIT-AVATAR */
 @import url(../blocks/popup/_edit-avatar/popup_edit-avatar.css);

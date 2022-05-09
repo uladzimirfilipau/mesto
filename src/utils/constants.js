@@ -1,6 +1,38 @@
-import { FormValidator } from "../components/FormValidator.js";
-import { Api } from "../components/Api.js";
-/*
+  export const templateElement = ".elements__template";
+  export const listElement = ".elements__list";
+  
+  export const popupAddCard = document.querySelector(".popup_add");
+  export const addCardForm = popupAddCard.querySelector(".popup__form_card");
+  export const addCardButton = document.querySelector(".profile__button-add");
+
+  export const deleteCardPopup = document.querySelector(".popup_delete-card");
+
+  export const popupImage = document.querySelector(".popup_image");
+  export const profileAvatar = document.querySelector(".profile__avatar");
+  export const avatarEditButton = document.querySelector(".profile__avatar-edit");
+  export const avatarEditPopup = document.querySelector(".popup_edit-avatar");
+  export const avatarForm = avatarEditPopup.querySelector(".popup__form_edit-avatar");
+
+  export const profilePopup = document.querySelector(".popup_edit-profile");
+  export const profileForm = profilePopup.querySelector(".popup__form_name");
+  export const profileEditButton = document.querySelector(".profile__button-edit");
+  export const profileTitle = document.querySelector(".profile__title");
+  export const profileSubtitle = document.querySelector(".profile__subtitle");
+  
+  export const ESC_CODE = "Escape";
+
+  export const object = {
+    formSelector: ".popup__form",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__button-submit",
+    submitTextSelector: ".popup__button-text",
+    inactiveButtonClass: "popup__button-submit_disabled",
+    inactiveTextClass: "popup__button-text_disabled",
+    inputErrorClass: "popup__input_type_error",
+    textErrorClass: "popup__error_visible",
+  };
+
+  /*
 export const initialCards = [
     {
       name: "Эйфелева башня",
@@ -40,54 +72,3 @@ export const initialCards = [
     },
   ];
   */
-  export const templateElement = ".elements__template";
-  export const listElement = ".elements__list";
-  
-  export const popupAddCard = document.querySelector(".popup_add");
-  const addCardForm = popupAddCard.querySelector(".popup__form_card");
-  export const addCardButton = document.querySelector(".profile__button-add");
-
-  export const deleteCardPopup = document.querySelector(".popup_delete-card");
-
-  export const popupImage = document.querySelector(".popup_image");
-
-  export const profileAvatar = document.querySelector(".profile__avatar");
-  export const avatarEditButton = document.querySelector(".profile__avatar-edit");
-  export const avatarEditPopup = document.querySelector(".popup_edit-avatar");
-  const avatarForm = avatarEditPopup.querySelector(".popup__form_edit-avatar");
-
-  export const profilePopup = document.querySelector(".popup_edit-profile");
-  export const profileEditButton = document.querySelector(".profile__button-edit");
-  export const profileTitle = document.querySelector(".profile__title");
-  export const profileSubtitle = document.querySelector(".profile__subtitle");
-  const profileForm = profilePopup.querySelector(".popup__form_name");
-  export const inputName = profileForm.querySelector(".popup__input_type_name");
-  export const inputInfo = profileForm.querySelector(".popup__input_type_about");
-  
-  export const ESC_CODE = "Escape";
-
-  const object = {
-    formSelector: ".popup__form",
-    inputSelector: ".popup__input",
-    submitButtonSelector: ".popup__button-submit",
-    inactiveButtonClass: "popup__button-submit_disabled",
-    inputErrorClass: "popup__input_type_error",
-    textErrorClass: "popup__error_visible",
-  };
-
-  export const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-40/",
-  headers: {
-    authorization: "d16804bc-f4c3-4d6d-8780-e08fffa15972",
-    "Content-Type": "application/json",
-  },
-});
-
-  export const error = (err) => {
-  alert(err);
-  console.log(err);
-};
-
-  export const profileFormValidator = new FormValidator(object, profileForm);
-  export const cardFormValidator = new FormValidator(object, addCardForm);
-  export const avatarFormValidator = new FormValidator(object, avatarForm);
