@@ -17,7 +17,7 @@ import {
   profileEditButton,
   profileTitle,
   profileSubtitle,
-  object
+  object,
 } from "../utils/constants.js";
 import { handleError } from "../utils/utils.js";
 
@@ -45,12 +45,12 @@ const addCardPopup = new PopupWithForm(popupAddCard, {
     addCardPopup.renderLoading(true);
     api
       .addCard(data)
-      .then((item) => renderer(item))
-      .catch(handleError)
-      .finally(() => {
-        addCardPopup.renderLoading(false);
+      .then((item) => {
+        renderer(item);
         addCardPopup.close();
-      });
+      })
+      .catch(handleError)
+      .finally(() => addCardPopup.renderLoading(false));
   },
 });
 
@@ -96,12 +96,12 @@ const createCard = (data) => {
         deleteCardConfirmPopup.renderDelete(true);
         api
           .deleteCard(data._id)
-          .then(() => card.handleDelete())
-          .catch(handleError)
-          .finally(() => {
-            deleteCardConfirmPopup.renderDelete(false);
+          .then(() => {
+            card.handleDelete();
             deleteCardConfirmPopup.close();
-          });
+          })
+          .catch(handleError)
+          .finally(() => deleteCardConfirmPopup.renderDelete(false));
       });
     },
   });
@@ -129,11 +129,13 @@ const avatarPopup = new PopupWithForm(avatarEditPopup, {
     avatarPopup.renderLoading(true);
     api
       .editProfileAvatar(data)
-      .then((data) => userInfo.setUserInfo(data))
+      .then((data) => {
+        userInfo.setUserInfo(data);
+        avatarPopup.close();
+      })
       .catch(handleError)
       .finally(() => {
         avatarPopup.renderLoading(false);
-        avatarPopup.close();
       });
   },
 });
@@ -152,12 +154,12 @@ const profileEditPopup = new PopupWithForm(profilePopup, {
     profileEditPopup.renderLoading(true);
     api
       .editProfileInfo(data)
-      .then((data) => userInfo.setUserInfo(data))
-      .catch(handleError)
-      .finally(() => {
-        profileEditPopup.renderLoading(false);
+      .then((data) => {
+        userInfo.setUserInfo(data);
         profileEditPopup.close();
-      });
+      })
+      .catch(handleError)
+      .finally(() => profileEditPopup.renderLoading(false));
   },
 });
 
@@ -185,7 +187,7 @@ api
   })
   .catch(handleError);
 
-  // VALIDATION
+// VALIDATION
 const profileFormValidator = new FormValidator(object, profileForm);
 const cardFormValidator = new FormValidator(object, addCardForm);
 const avatarFormValidator = new FormValidator(object, avatarForm);
